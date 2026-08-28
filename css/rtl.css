@@ -1,0 +1,56 @@
+/* Гебраистская RTL-версия — накладывается поверх style.css */
+/* גרסה עברית: היפוך כיוון והתאמות טיפוגרפיה */
+
+html[dir="rtl"] body{
+  font-family:"Heebo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.7;
+}
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4{
+  font-family:"Frank Ruhl Libre",Georgia,serif;
+  line-height:1.25;
+  letter-spacing:0;
+}
+html[dir="rtl"] h1{font-size:clamp(2.3rem,5.4vw,3.9rem)}
+html[dir="rtl"] h1 span{font-style:normal}
+html[dir="rtl"] .eyebrow{letter-spacing:.1em}
+
+/* Цифры и латиница внутри RTL остаются слева направо */
+html[dir="rtl"] .stats b,
+html[dir="rtl"] .feat b,
+html[dir="rtl"] .contacts a[href^="tel"],
+html[dir="rtl"] .contacts a[href^="mailto"]{direction:ltr;unicode-bidi:isolate}
+html[dir="rtl"] .contacts a[href^="tel"],
+html[dir="rtl"] .contacts a[href^="mailto"]{display:inline-block;text-align:right}
+
+/* Списки с галочками */
+html[dir="rtl"] .ticks li{padding-left:0;padding-right:30px}
+html[dir="rtl"] .ticks li::before{left:auto;right:0}
+
+/* Портрет и бейдж лицензии */
+html[dir="rtl"] .photo::before{inset:18px 18px -18px -18px}
+html[dir="rtl"] .badge{right:auto;left:-14px}
+
+/* Стрелка-ссылка смотрит влево */
+html[dir="rtl"] .link-arrow::after{content:"←"}
+html[dir="rtl"] .link-arrow:hover::after{transform:translateX(-5px)}
+
+/* Аккордеон FAQ */
+html[dir="rtl"] .acc summary{padding:20px 0 20px 40px}
+html[dir="rtl"] .acc summary::after{right:auto;left:6px}
+html[dir="rtl"] .acc details p{padding:0 0 20px 40px}
+
+/* Кавычка в отзывах */
+html[dir="rtl"] .quote::before{right:auto;left:22px;content:"„"}
+
+/* Плавающая кнопка */
+html[dir="rtl"] .fab{right:auto;left:22px}
+
+/* Переключатель языка */
+html[dir="rtl"] .lang::before{content:"⇄ "}
+
+@media (max-width:960px){
+  html[dir="rtl"] .badge{left:12px;right:auto}
+}

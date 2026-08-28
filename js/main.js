@@ -5,6 +5,23 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* Строки интерфейса по языку страницы / מחרוזות ממשק לפי שפת הדף */
+  var LANG = (document.documentElement.lang || 'ru').toLowerCase() === 'he' ? 'he' : 'ru';
+  var T = {
+    ru: {
+      fill: 'Пожалуйста, заполните все поля.',
+      sending: 'Спасибо! Открываю почтовый клиент…',
+      subject: 'Заявка на экскурсию с сайта',
+      name: 'Имя', contact: 'Контакт'
+    },
+    he: {
+      fill: 'נא למלא את כל השדות.',
+      sending: 'תודה! פותח את תוכנת הדוא״ל…',
+      subject: 'פנייה לסיור מהאתר',
+      name: 'שם', contact: 'פרטי קשר'
+    }
+  }[LANG];
+
   /* Год в подвале */
   var year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
@@ -92,18 +109,18 @@
         if (bad) ok = false;
       });
       if (!ok) {
-        note.textContent = 'Пожалуйста, заполните все поля.';
+        note.textContent = T.fill;
         return;
       }
       var data = new FormData(form);
       var body =
-        'Имя: ' + data.get('name') + '\n' +
-        'Контакт: ' + data.get('contact') + '\n\n' +
+        T.name + ': ' + data.get('name') + '\n' +
+        T.contact + ': ' + data.get('contact') + '\n\n' +
         data.get('msg');
-      note.textContent = 'Спасибо! Открываю почтовый клиент…';
+      note.textContent = T.sending;
       window.location.href =
         'mailto:angelavoropin@gmail.com' +
-        '?subject=' + encodeURIComponent('Заявка на экскурсию с сайта') +
+        '?subject=' + encodeURIComponent(T.subject) +
         '&body=' + encodeURIComponent(body);
       form.reset();
     });
